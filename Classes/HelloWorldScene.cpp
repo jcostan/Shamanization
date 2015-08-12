@@ -22,7 +22,7 @@ bool HelloWorld::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !LayerColor::initWithColor(Color4B(150,150,150,255)) )
+    if ( !LayerColor::initWithColor(Color4B(100,100,100,255)) )
     {
         return false;
     }
@@ -59,7 +59,7 @@ bool HelloWorld::init()
     // position the label on the center of the screen
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
                             origin.y + visibleSize.height - label->getContentSize().height));
-    label->setColor(Color3B(0,0,0));
+    label->setColor(Color3B(255,255,255));
 
     // add the label as a child to this layer
     this->addChild(label, 1);

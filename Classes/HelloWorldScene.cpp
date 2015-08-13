@@ -54,7 +54,7 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
     
-    auto label = Label::createWithTTF("Shamanizer", "fonts/arial.ttf", 24);
+    auto label = Label::createWithTTF("Shamanizer o retorno do mulek", "fonts/arial.ttf", 24);
     
     // position the label on the center of the screen
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
@@ -72,7 +72,7 @@ bool HelloWorld::init()
     sprite->setPosition(Vec2(visibleSize.width/2.5 + origin.x, visibleSize.height/2 + origin.y));
     sprite_shadow->setPosition(Vec2(visibleSize.width/1.5 + origin.x, visibleSize.height/2 + origin.y));
     
-    sprite->setScale(.3);
+    sprite->setScale(.5);
     sprite_shadow->setScale(.3);
 
     // add the sprite as a child to this layer

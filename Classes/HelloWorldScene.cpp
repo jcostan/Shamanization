@@ -54,7 +54,7 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
     
-    auto label = Label::createWithTTF("Shamanizer o retorno do mulek", "fonts/arial.ttf", 24);
+    auto label = Label::createWithTTF("Shamanizer iOS/Mac/Windows/Android ta ligado?!", "fonts/arial.ttf", 24);
     
     // position the label on the center of the screen
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
@@ -81,6 +81,7 @@ bool HelloWorld::init()
     
     return true;
 }
+
 
 
 void HelloWorld::menuCloseCallback(Ref* pSender)

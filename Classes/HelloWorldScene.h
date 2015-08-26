@@ -15,8 +15,18 @@ public:
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     
+    void onTouchesBegan(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);
+    void onTouchesMoved(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);
+    void onTouchesEnded(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);
+    
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+    
+private:
+    const static int MAX_TOUCHES = 5;
+    
+protected:
+    cocos2d::Label* labelTouchLocations[MAX_TOUCHES];
 };
 
 #endif // __HELLOWORLD_SCENE_H__

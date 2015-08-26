@@ -33,20 +33,14 @@ bool HelloWorld::init()
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
-
-    // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
     
-	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
-                                origin.y + closeItem->getContentSize().height/2));
-
-    // create menu, it's an autorelease object
-    auto menu = Menu::create(closeItem, NULL);
-    menu->setPosition(Vec2::ZERO);
-    //this->addChild(menu, 1);
+    auto listener = EventListenerTouchAllAtOnce::create();
+    
+    listener->onTouchesBegan = CC_CALLBACK_2(HelloWorld::onTouchesBegan, this);
+    listener->onTouchesMoved = CC_CALLBACK_2(HelloWorld::onTouchesMoved, this);
+    listener->onTouchesEnded = CC_CALLBACK_2(HelloWorld::onTouchesEnded, this);
+    
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
     /////////////////////////////
     // 3. add your codes below...
@@ -54,7 +48,7 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
     
-    auto label = Label::createWithTTF("Shamanizer iOS/Mac/Windows/Android ta ligado?!", "fonts/arial.ttf", 18);
+    auto label = Label::createWithTTF("Shamanizer: O ataque das sombras", "fonts/arial.ttf", 18);
     
     // position the label on the center of the screen
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
@@ -78,11 +72,25 @@ bool HelloWorld::init()
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
     this->addChild(sprite_shadow, 1);
+
     
     return true;
 }
 
+void HelloWorld::onTouchesBegan(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event)
+{
+    
+}
 
+void HelloWorld::onTouchesMoved(const std::vector<Touch *> &touches, cocos2d::Event *unused_event)
+{
+    
+}
+
+void HelloWorld::onTouchesEnded(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event)
+{
+    
+}
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
 {

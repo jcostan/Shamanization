@@ -63,6 +63,11 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(label, 1);
     
+    bgInGame = Sprite::create("bg_inGame.jpg");
+    
+    bgInGame->setAnchorPoint(Vec2(.5, .5));
+    bgInGame->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    
     // add "HelloWorld" splash screen"
     player = Sprite::create("shaman_dude.png");
     shadow = Sprite::create("shadow.png");
@@ -71,12 +76,14 @@ bool HelloWorld::init()
     player->setPosition(Vec2(visibleSize.width/2.5 + origin.x, visibleSize.height/2 + origin.y));
     shadow->setPosition(Vec2(visibleSize.width/1.5 + origin.x, visibleSize.height/2 + origin.y));
     
-    player->setScale(.5);
-    shadow->setScale(.3);
+    player->setScale(visibleSize.width*.001, visibleSize.height*.0013);
+    shadow->setScale(visibleSize.width*.0008, visibleSize.height*.001);
     
     // add the sprite as a child to this layer
-    this->addChild(player, 0);
-    this->addChild(shadow, 1);
+
+    this->addChild(bgInGame, 0);
+    this->addChild(player, 1);
+    this->addChild(shadow, 2);
     
     return true;
 }
@@ -84,24 +91,24 @@ bool HelloWorld::init()
 #pragma mark -
 #pragma mark - Events Key/Touch
 
-void HelloWorld::onTouchesBegan(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event)
+void HelloWorld::onTouchesBegan(const std::vector<Touch *> &touches, Event *event)
 {
     player->setPosition(Vec2(player->getPositionX() + 2, player->getPositionY()));
     shadow->setPosition(Vec2(shadow->getPositionX() + 2, shadow->getPositionY()));
 }
 
-void HelloWorld::onTouchesMoved(const std::vector<Touch *> &touches, cocos2d::Event *unused_event)
+void HelloWorld::onTouchesMoved(const std::vector<Touch *> &touches, Event *unused_event)
 {
     
 }
 
-void HelloWorld::onTouchesEnded(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event)
+void HelloWorld::onTouchesEnded(const std::vector<Touch *> &touches, Event *event)
 {
     player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
     shadow->setPosition(Vec2(shadow->getPositionX() - 2, shadow->getPositionY()));
 }
 
-void HelloWorld::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
+void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)
 {
     switch (keyCode) {
         case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
@@ -116,7 +123,7 @@ void HelloWorld::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::
     }
 }
 
-void HelloWorld::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
+void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
 {
     switch (keyCode) {
         case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:

@@ -66,6 +66,8 @@
 		B18272D61B7BB1A0000A545A /* shaman_dude.png in Resources */ = {isa = PBXBuildFile; fileRef = B18272D11B7BB1A0000A545A /* shaman_dude.png */; };
 		B18272D71B7BB1A0000A545A /* totem.png in Resources */ = {isa = PBXBuildFile; fileRef = B18272D21B7BB1A0000A545A /* totem.png */; };
 		B18272D81B7BB1A0000A545A /* totem.png in Resources */ = {isa = PBXBuildFile; fileRef = B18272D21B7BB1A0000A545A /* totem.png */; };
+		B19AE3941B8F979E00E6B318 /* bg_inGame.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B19AE3931B8F979E00E6B318 /* bg_inGame.jpg */; };
+		B19AE3951B8F979E00E6B318 /* bg_inGame.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B19AE3931B8F979E00E6B318 /* bg_inGame.jpg */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -161,6 +163,7 @@
 		B18272D01B7BB1A0000A545A /* shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow.png; sourceTree = "<group>"; };
 		B18272D11B7BB1A0000A545A /* shaman_dude.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shaman_dude.png; sourceTree = "<group>"; };
 		B18272D21B7BB1A0000A545A /* totem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = totem.png; sourceTree = "<group>"; };
+		B19AE3931B8F979E00E6B318 /* bg_inGame.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_inGame.jpg; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -285,6 +288,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B19AE3931B8F979E00E6B318 /* bg_inGame.jpg */,
 				B18272D01B7BB1A0000A545A /* shadow.png */,
 				B18272D11B7BB1A0000A545A /* shaman_dude.png */,
 				B18272D21B7BB1A0000A545A /* totem.png */,
@@ -468,6 +472,7 @@
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				B18272D71B7BB1A0000A545A /* totem.png in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
+				B19AE3941B8F979E00E6B318 /* bg_inGame.jpg in Resources */,
 				B18272D51B7BB1A0000A545A /* shaman_dude.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				B18272D31B7BB1A0000A545A /* shadow.png in Resources */,
@@ -493,6 +498,7 @@
 				46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				B18272D41B7BB1A0000A545A /* shadow.png in Resources */,
+				B19AE3951B8F979E00E6B318 /* bg_inGame.jpg in Resources */,
 				B18272D61B7BB1A0000A545A /* shaman_dude.png in Resources */,
 				3EACC99019EE6D4300EB3C5E /* res in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,

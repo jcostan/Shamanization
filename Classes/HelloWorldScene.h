@@ -3,22 +3,24 @@
 
 #include "cocos2d.h"
 
-class HelloWorld : public cocos2d::LayerColor
+using namespace cocos2d;
+
+class HelloWorld : public LayerColor
 {
 public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
-    static cocos2d::Scene* createScene();
+    static Scene* createScene();
 
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
     virtual bool init();
     
     // a event callback    
-    void onTouchesBegan(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);
-    void onTouchesMoved(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);
-    void onTouchesEnded(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);
+    void onTouchesBegan(const std::vector<Touch *> &touches, Event *event);
+    void onTouchesMoved(const std::vector<Touch *> &touches, Event *event);
+    void onTouchesEnded(const std::vector<Touch *> &touches, Event *event);
     
-    void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
-    void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
+    void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
+    void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
@@ -27,9 +29,11 @@ private:
     const static int MAX_TOUCHES = 5;
 
 protected:
-    cocos2d::Label* labelTouchLocations[MAX_TOUCHES];
-    cocos2d::Sprite* player;
-    cocos2d::Sprite* shadow;
+    Label* labelTouchLocations[MAX_TOUCHES];
+
+    Sprite* player;
+    Sprite* shadow;
+    Sprite* bgInGame;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

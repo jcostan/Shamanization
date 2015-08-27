@@ -26,7 +26,7 @@ bool HelloWorld::init()
     {
         return false;
     }
-    
+
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -35,12 +35,17 @@ bool HelloWorld::init()
     //    you may modify it.
     
     auto listener = EventListenerTouchAllAtOnce::create();
+    auto keyboardListener = EventListenerKeyboard::create();
     
     listener->onTouchesBegan = CC_CALLBACK_2(HelloWorld::onTouchesBegan, this);
     listener->onTouchesMoved = CC_CALLBACK_2(HelloWorld::onTouchesMoved, this);
     listener->onTouchesEnded = CC_CALLBACK_2(HelloWorld::onTouchesEnded, this);
     
+    keyboardListener->onKeyPressed  = CC_CALLBACK_2(HelloWorld::onKeyPressed, this);
+    keyboardListener->onKeyReleased = CC_CALLBACK_2(HelloWorld::onKeyReleased, this);
+    
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
 
     /////////////////////////////
     // 3. add your codes below...
@@ -59,27 +64,30 @@ bool HelloWorld::init()
     this->addChild(label, 1);
 
     // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("shaman_dude.png");
-    auto sprite_shadow = Sprite::create("shadow.png");
+    player = Sprite::create("shaman_dude.png");
+    shadow = Sprite::create("shadow.png");
 
     // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2.5 + origin.x, visibleSize.height/2 + origin.y));
-    sprite_shadow->setPosition(Vec2(visibleSize.width/1.5 + origin.x, visibleSize.height/2 + origin.y));
+    player->setPosition(Vec2(visibleSize.width/2.5 + origin.x, visibleSize.height/2 + origin.y));
+    shadow->setPosition(Vec2(visibleSize.width/1.5 + origin.x, visibleSize.height/2 + origin.y));
     
-    sprite->setScale(.5);
-    sprite_shadow->setScale(.3);
+    player->setScale(.5);
+    shadow->setScale(.3);
 
     // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
-    this->addChild(sprite_shadow, 1);
+    this->addChild(player, 0);
+    this->addChild(shadow, 1);
 
-    
     return true;
 }
 
+#pragma mark -
+#pragma mark - Events Key/Touch
+
 void HelloWorld::onTouchesBegan(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event)
 {
-    
+    player->setPosition(Vec2(player->getPositionX() + 2, player->getPositionY()));
+    shadow->setPosition(Vec2(shadow->getPositionX() + 2, shadow->getPositionY()));
 }
 
 void HelloWorld::onTouchesMoved(const std::vector<Touch *> &touches, cocos2d::Event *unused_event)
@@ -89,14 +97,30 @@ void HelloWorld::onTouchesMoved(const std::vector<Touch *> &touches, cocos2d::Ev
 
 void HelloWorld::onTouchesEnded(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event)
 {
-    
+    player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
+    shadow->setPosition(Vec2(shadow->getPositionX() - 2, shadow->getPositionY()));
 }
 
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void HelloWorld::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
 {
-    Director::getInstance()->end();
+    switch (keyCode) {
+        case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+            
+            player->setPosition(Vec2(player->getPositionX() + 2, player->getPositionY()));
+            shadow->setPosition(Vec2(shadow->getPositionX() + 2, shadow->getPositionY()));
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+    player->setPosition(Vec2(player->getPositionX() + 2, player->getPositionY()));
+    shadow->setPosition(Vec2(shadow->getPositionX() + 2, shadow->getPositionY()));
+}
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
+void HelloWorld::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
+{
+    player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
+    shadow->setPosition(Vec2(shadow->getPositionX() - 2, shadow->getPositionY()));
 }

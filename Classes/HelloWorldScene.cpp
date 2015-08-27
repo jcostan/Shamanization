@@ -9,10 +9,10 @@ Scene* HelloWorld::createScene()
     
     // 'layer' is an autorelease object
     auto layer = HelloWorld::create();
-
+    
     // add layer as a child to scene
     scene->addChild(layer);
-
+    
     // return the scene
     return scene;
 }
@@ -26,10 +26,10 @@ bool HelloWorld::init()
     {
         return false;
     }
-
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
+    
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
@@ -46,10 +46,10 @@ bool HelloWorld::init()
     
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
-
+    
     /////////////////////////////
     // 3. add your codes below...
-
+    
     // add a label shows "Hello World"
     // create and initialize a label
     
@@ -59,25 +59,25 @@ bool HelloWorld::init()
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
                             origin.y + visibleSize.height - label->getContentSize().height));
     label->setColor(Color3B(255,255,255));
-
+    
     // add the label as a child to this layer
     this->addChild(label, 1);
-
+    
     // add "HelloWorld" splash screen"
     player = Sprite::create("shaman_dude.png");
     shadow = Sprite::create("shadow.png");
-
+    
     // position the sprite on the center of the screen
     player->setPosition(Vec2(visibleSize.width/2.5 + origin.x, visibleSize.height/2 + origin.y));
     shadow->setPosition(Vec2(visibleSize.width/1.5 + origin.x, visibleSize.height/2 + origin.y));
     
     player->setScale(.5);
     shadow->setScale(.3);
-
+    
     // add the sprite as a child to this layer
     this->addChild(player, 0);
     this->addChild(shadow, 1);
-
+    
     return true;
 }
 
@@ -114,13 +114,19 @@ void HelloWorld::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::
         default:
             break;
     }
-    
-    player->setPosition(Vec2(player->getPositionX() + 2, player->getPositionY()));
-    shadow->setPosition(Vec2(shadow->getPositionX() + 2, shadow->getPositionY()));
 }
 
 void HelloWorld::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
 {
-    player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
-    shadow->setPosition(Vec2(shadow->getPositionX() - 2, shadow->getPositionY()));
+    switch (keyCode) {
+        case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+            
+            player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
+            shadow->setPosition(Vec2(shadow->getPositionX() - 2, shadow->getPositionY()));
+            
+            break;
+            
+        default:
+            break;
+    }
 }

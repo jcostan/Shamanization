@@ -21,12 +21,16 @@ public:
     
     void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
     void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
+
+	void update(float) override;
+	void SpawnEnemies();
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
     
 private:
     const static int MAX_TOUCHES = 5;
+	float spawnTimer = 2;
 
 protected:
     Label* labelTouchLocations[MAX_TOUCHES];
@@ -34,6 +38,7 @@ protected:
     Sprite* player;
     Sprite* shadow;
     Sprite* bgInGame;
+	Vector<Sprite*> shadows;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

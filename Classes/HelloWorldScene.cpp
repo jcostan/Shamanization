@@ -49,7 +49,7 @@ bool HelloWorld::init()
     
     /////////////////////////////
     // 3. add your codes below...
-    
+
     // add a label shows "Hello World"
     // create and initialize a label
     
@@ -84,8 +84,44 @@ bool HelloWorld::init()
     this->addChild(bgInGame, 0);
     this->addChild(player, 1);
     this->addChild(shadow, 2);
-    
+
+	this->scheduleUpdate();
     return true;
+}
+
+void HelloWorld::update(float delta){
+	spawnTimer -= delta;
+	SpawnEnemies();
+	int count = 0;
+	for each (Sprite *s in shadows){
+		auto position = s->getPosition();
+		if (position.x < 0 - (s->getBoundingBox().size.width / 2)){
+			//Ele saiu da tela, deve ir pra outra(e dominar uma casinha)
+			//A linha abaixo faz ele aparecer na direita da tela
+			//position.x = this->getBoundingBox().getMaxX() + s->getBoundingBox().size.width / 2;
+		}
+		else{//Ainda esta na tela, ir pra esquerda
+			position.x -= 50 * delta;
+			s->setPosition(position);
+		}
+
+		count++;
+	}
+}
+
+void HelloWorld::SpawnEnemies(){
+	if (spawnTimer <= 0){
+		Size visibleSize = Director::getInstance()->getVisibleSize();
+		Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+		float randY = rand() % 100 + (-100);
+		shadows.pushBack(Sprite::create("shadow.png"));
+
+		shadows.at(shadows.size()-1)->setPosition(Vec2(visibleSize.width / 1.5 + origin.x, visibleSize.height / 2 + randY));
+		shadows.at(shadows.size()-1)->setScale(visibleSize.width*.0008, visibleSize.height*.001);
+		this->addChild(shadows.at(shadows.size() - 1), shadows.size()+2);
+		spawnTimer = 2;
+	}
 }
 
 #pragma mark -
@@ -93,8 +129,13 @@ bool HelloWorld::init()
 
 void HelloWorld::onTouchesBegan(const std::vector<Touch *> &touches, Event *event)
 {
-    player->setPosition(Vec2(player->getPositionX() + 2, player->getPositionY()));
-    shadow->setPosition(Vec2(shadow->getPositionX() + 2, shadow->getPositionY()));
+	if (touches[0]->getLocation().x > Director::getInstance()->getVisibleSize().width / 2)
+		player->setPosition(Vec2(player->getPositionX() + 2, player->getPositionY()));
+	else
+		player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
+
+    /*player->setPosition(Vec2(player->getPositionX() + 2, player->getPositionY()));
+    shadow->setPosition(Vec2(shadow->getPositionX() + 2, shadow->getPositionY()));*/
 }
 
 void HelloWorld::onTouchesMoved(const std::vector<Touch *> &touches, Event *unused_event)
@@ -104,8 +145,8 @@ void HelloWorld::onTouchesMoved(const std::vector<Touch *> &touches, Event *unus
 
 void HelloWorld::onTouchesEnded(const std::vector<Touch *> &touches, Event *event)
 {
-    player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
-    shadow->setPosition(Vec2(shadow->getPositionX() - 2, shadow->getPositionY()));
+    //player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
+    //shadow->setPosition(Vec2(shadow->getPositionX() - 2, shadow->getPositionY()));
 }
 
 void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)

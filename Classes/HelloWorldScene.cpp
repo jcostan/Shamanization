@@ -165,8 +165,11 @@ void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)
         case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
             
             player->setPosition(Vec2(player->getPositionX() + 2, player->getPositionY()));
-            shadow->setPosition(Vec2(shadow->getPositionX() + 2, shadow->getPositionY()));
+            break;
             
+        case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+            
+            player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
             break;
             
         default:
@@ -176,7 +179,7 @@ void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)
 
 void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
 {
-    switch (keyCode) {
+    /*switch (keyCode) {
         case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
             
             player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
@@ -186,7 +189,7 @@ void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
             
         default:
             break;
-    }
+    }*/
 }
 
 #pragma mark -

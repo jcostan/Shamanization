@@ -34,6 +34,11 @@ bool HelloWorld::init()
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
     
+    auto closeItem = MenuItemImage::create(
+                                           "CloseNormal.png",
+                                           "CloseSelected.png",
+                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+    
     auto listener = EventListenerTouchAllAtOnce::create();
     auto keyboardListener = EventListenerKeyboard::create();
     
@@ -52,7 +57,7 @@ bool HelloWorld::init()
 
     // add a label shows "Hello World"
     // create and initialize a label
-    
+
     auto label = Label::createWithTTF("Shamanizer: O ataque das sombras", "fonts/arial.ttf", 18);
     
     // position the label on the center of the screen
@@ -84,6 +89,7 @@ bool HelloWorld::init()
     this->addChild(bgInGame, 0);
     this->addChild(player, 1);
     this->addChild(shadow, 2);
+    this->addChild(closeItem, 3);
 
 	this->scheduleUpdate();
     return true;
@@ -91,19 +97,23 @@ bool HelloWorld::init()
 
 void HelloWorld::update(float delta){
 	spawnTimer -= delta;
+    
 	SpawnEnemies();
+    
 	int count = 0;
-	for each (Sprite *s in shadows){
-		auto position = s->getPosition();
-		if (position.x < 0 - (s->getBoundingBox().size.width / 2)){
+    
+    for (int i = 0; i < shadows.size(); i++) {
+		auto position = shadows.at(i)->getPosition();
+        
+		if (position.x < 0 - (shadows.at(i)->getBoundingBox().size.width / 2)) {
 			//Ele saiu da tela, deve ir pra outra(e dominar uma casinha)
 			//A linha abaixo faz ele aparecer na direita da tela
-			//position.x = this->getBoundingBox().getMaxX() + s->getBoundingBox().size.width / 2;
+			position.x = this->getBoundingBox().getMaxX() + shadows.at(i)->getBoundingBox().size.width / 2;
 		}
-		else{//Ainda esta na tela, ir pra esquerda
-			position.x -= 50 * delta;
-			s->setPosition(position);
-		}
+//		else {//Ainda esta na tela, ir pra esquerda
+//			position.x -= 50 * delta;
+//			shadows.at(i)->setPosition(position);
+//		}
 
 		count++;
 	}
@@ -119,8 +129,8 @@ void HelloWorld::SpawnEnemies(){
 
 		shadows.at(shadows.size()-1)->setPosition(Vec2(visibleSize.width / 1.5 + origin.x, visibleSize.height / 2 + randY));
 		shadows.at(shadows.size()-1)->setScale(visibleSize.width*.0008, visibleSize.height*.001);
-		this->addChild(shadows.at(shadows.size() - 1), shadows.size()+2);
-		spawnTimer = 2;
+		this->addChild(shadows.at(shadows.size() - 1), shadows.size()+3);
+		spawnTimer = .1;
 	}
 }
 
@@ -177,4 +187,16 @@ void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
         default:
             break;
     }
+}
+
+#pragma mark -
+#pragma mark FINISHING DE APLICATION
+
+void HelloWorld::menuCloseCallback(Ref* pSender)
+{
+    Director::getInstance()->end();
+    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    exit(0);
+#endif
 }

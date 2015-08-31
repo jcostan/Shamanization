@@ -19,6 +19,8 @@ public:
     void onTouchesMoved(const std::vector<Touch *> &touches, Event *event);
     void onTouchesEnded(const std::vector<Touch *> &touches, Event *event);
     
+    void menuCloseCallback(cocos2d::Ref* pSender);
+    
     void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event);
     void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
 

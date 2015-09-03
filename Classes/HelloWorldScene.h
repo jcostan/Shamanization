@@ -26,6 +26,7 @@ public:
 
 	void update(float) override;
 	void SpawnEnemies();
+    void configBrush();
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
@@ -37,10 +38,23 @@ private:
 protected:
     Label* labelTouchLocations[MAX_TOUCHES];
 
-    Sprite* player;
-    Sprite* shadow;
-    Sprite* bgInGame;
+    Sprite *player;
+    Sprite *shadow;
+    Sprite *bgInGame;
+    Sprite *brush;
+    
 	Vector<Sprite*> shadows;
+    
+    Vector<Sprite*> brushs;
+    
+    
+    DrawNode *nodeMagic;
+    
+    bool castando = false;
+    
+    int pontoAtual = 0;
+    
+    RenderTexture *target;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

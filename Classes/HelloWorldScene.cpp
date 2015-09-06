@@ -7,6 +7,9 @@
 
 USING_NS_CC;
 
+#pragma mark -
+#pragma mark - Create/Init
+
 Scene* HelloWorld::createScene()
 {
     // 'scene' is an autorelease object
@@ -96,16 +99,20 @@ bool HelloWorld::init()
     
     // add the sprite as a child to this layer
     
- //   this->addChild(bgInGame, 0);
- //   this->addChild(player, 1);
- //   this->addChild(shadow, 2);
- //   this->addChild(closeItem, 3);
-    this ->addChild(nodeMagic, 0);
+    this->addChild(bgInGame, 0);
+    this->addChild(player, 1);
+    this->addChild(shadow, 2);
+    this->addChild(closeItem, 3);
+    
+    this ->addChild(nodeMagic, 4);
     
     this->scheduleUpdate();
 
     return true;
 }
+
+#pragma mark -
+#pragma mark - George W. Brush
 
 void HelloWorld::configBrush()
 {
@@ -125,6 +132,7 @@ void HelloWorld::configBrush()
 
 #pragma mark -
 #pragma mark - Update
+
 void HelloWorld::update(float delta){
     
     spawnTimer -= delta;
@@ -173,15 +181,39 @@ void HelloWorld::SpawnEnemies(){
 
 void HelloWorld::onTouchesBegan(const std::vector<Touch *> &touches, Event *event)
 {
-
+    /*if (timedOut) {
+        detector->reset();
+        
+        if (enableDraw) {
+            detector->removeAllPoints();
+        }
+    }*/
+    
+    auto touch = touches[0];
+    auto point = touch->getLocation();
+    //detector->addPoint(point);
+    
+    //if (!enableDraw) return
+    
+    //path->moveToPoint(point);
 }
 
 void HelloWorld::onTouchesMoved(const std::vector<Touch *> &touches, Event *unused_event)
 {
     auto touch = touches[0];
-    auto start = touch->getLocation();
-    auto end = touch->getPreviousLocation();
+    auto point = touch->getLocation();
     
+    //detector->addPoint(point);
+    
+    //if (!enableDraw) return;
+    
+    //path->addLineToPoint(point);
+    
+    
+    //auto start = touch->getLocation();
+    //auto end = touch->getPreviousLocation();
+    
+    /*
     // begin drawing to the render texture
     target->begin();
     
@@ -208,7 +240,7 @@ void HelloWorld::onTouchesMoved(const std::vector<Touch *> &touches, Event *unus
             brushs.at(i)->setRotation(rand() % 360);
             float r = (float)(rand() % 50 / 50.f) + 0.25f;
             brushs.at(i)->setScale(r);
-            /*_brush->setColor(Color3B(CCRANDOM_0_1() * 127 + 128, 255, 255));*/
+            /*_brush->setColor(Color3B(CCRANDOM_0_1() * 127 + 128, 255, 255));
             // Use CCRANDOM_0_1() will cause error when loading libtests.so on android, I don't know why.
             brushs.at(i)->setColor(Color3B(rand() % 127 + 128, 255, 255));
             // Call visit to draw the brush, don't call draw..
@@ -217,14 +249,19 @@ void HelloWorld::onTouchesMoved(const std::vector<Touch *> &touches, Event *unus
     }
     
     // finish drawing and return context back to the screen
-    target->end();
+    target->end();*/
 }
 
 void HelloWorld::onTouchesEnded(const std::vector<Touch *> &touches, Event *event)
 {
     auto touch = touches[0];
-    auto start = touch->getLocation();
-    auto end = touch->getPreviousLocation();
+    auto point = touch->getLocation();
+    
+    //detector->addPoint(point);
+    //detector->detect();
+    
+    //auto start = touch->getLocation();
+    //auto end = touch->getPreviousLocation();
 }
 
 void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)

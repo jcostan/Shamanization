@@ -70,6 +70,14 @@
 		B19AE3951B8F979E00E6B318 /* bg_inGame.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B19AE3931B8F979E00E6B318 /* bg_inGame.jpg */; };
 		B1B972461B973085009F7969 /* largeBrush.png in Resources */ = {isa = PBXBuildFile; fileRef = B1B972451B973085009F7969 /* largeBrush.png */; };
 		B1B972471B973085009F7969 /* largeBrush.png in Resources */ = {isa = PBXBuildFile; fileRef = B1B972451B973085009F7969 /* largeBrush.png */; };
+		B1D3E8E31B9CC42200319A12 /* GlyphDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D3E8E11B9CC42200319A12 /* GlyphDetector.cpp */; };
+		B1D3E8E41B9CC42200319A12 /* GlyphDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D3E8E11B9CC42200319A12 /* GlyphDetector.cpp */; };
+		B1D3E8EB1B9CC5DC00319A12 /* GlyphDetectResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D3E8E91B9CC5DC00319A12 /* GlyphDetectResult.cpp */; };
+		B1D3E8EC1B9CC5DC00319A12 /* GlyphDetectResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D3E8E91B9CC5DC00319A12 /* GlyphDetectResult.cpp */; };
+		B1D3E8EF1B9CC66400319A12 /* GlyphMaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D3E8ED1B9CC66400319A12 /* GlyphMaster.cpp */; };
+		B1D3E8F01B9CC66400319A12 /* GlyphMaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D3E8ED1B9CC66400319A12 /* GlyphMaster.cpp */; };
+		B1D3E8F31B9CC79F00319A12 /* GlyphStroke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D3E8F11B9CC79F00319A12 /* GlyphStroke.cpp */; };
+		B1D3E8F41B9CC79F00319A12 /* GlyphStroke.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1D3E8F11B9CC79F00319A12 /* GlyphStroke.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -167,6 +175,14 @@
 		B18272D21B7BB1A0000A545A /* totem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = totem.png; sourceTree = "<group>"; };
 		B19AE3931B8F979E00E6B318 /* bg_inGame.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_inGame.jpg; sourceTree = "<group>"; };
 		B1B972451B973085009F7969 /* largeBrush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = largeBrush.png; sourceTree = "<group>"; };
+		B1D3E8E11B9CC42200319A12 /* GlyphDetector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlyphDetector.cpp; sourceTree = "<group>"; };
+		B1D3E8E21B9CC42200319A12 /* GlyphDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlyphDetector.h; sourceTree = "<group>"; };
+		B1D3E8E91B9CC5DC00319A12 /* GlyphDetectResult.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlyphDetectResult.cpp; sourceTree = "<group>"; };
+		B1D3E8EA1B9CC5DC00319A12 /* GlyphDetectResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlyphDetectResult.h; sourceTree = "<group>"; };
+		B1D3E8ED1B9CC66400319A12 /* GlyphMaster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlyphMaster.cpp; sourceTree = "<group>"; };
+		B1D3E8EE1B9CC66400319A12 /* GlyphMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlyphMaster.h; sourceTree = "<group>"; };
+		B1D3E8F11B9CC79F00319A12 /* GlyphStroke.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GlyphStroke.cpp; sourceTree = "<group>"; };
+		B1D3E8F21B9CC79F00319A12 /* GlyphStroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlyphStroke.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -313,6 +329,14 @@
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
+				B1D3E8E11B9CC42200319A12 /* GlyphDetector.cpp */,
+				B1D3E8E21B9CC42200319A12 /* GlyphDetector.h */,
+				B1D3E8E91B9CC5DC00319A12 /* GlyphDetectResult.cpp */,
+				B1D3E8EA1B9CC5DC00319A12 /* GlyphDetectResult.h */,
+				B1D3E8ED1B9CC66400319A12 /* GlyphMaster.cpp */,
+				B1D3E8EE1B9CC66400319A12 /* GlyphMaster.h */,
+				B1D3E8F11B9CC79F00319A12 /* GlyphStroke.cpp */,
+				B1D3E8F21B9CC79F00319A12 /* GlyphStroke.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -521,10 +545,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1D3E8EF1B9CC66400319A12 /* GlyphMaster.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				B1D3E8EB1B9CC5DC00319A12 /* GlyphDetectResult.cpp in Sources */,
+				B1D3E8F31B9CC79F00319A12 /* GlyphStroke.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				B1D3E8E31B9CC42200319A12 /* GlyphDetector.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,7 +562,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				B1D3E8F41B9CC79F00319A12 /* GlyphStroke.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				B1D3E8EC1B9CC5DC00319A12 /* GlyphDetectResult.cpp in Sources */,
+				B1D3E8E41B9CC42200319A12 /* GlyphDetector.cpp in Sources */,
+				B1D3E8F01B9CC66400319A12 /* GlyphMaster.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

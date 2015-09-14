@@ -25,36 +25,22 @@ public:
     void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
 
 	void update(float) override;
-	void SpawnEnemies();
-    void configBrush();
-    
+	void ChangeScene(int id);
+
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
     
 private:
     const static int MAX_TOUCHES = 5;
-	float spawnTimer = 2;
 
+	Scene *VilaScene;
+	Scene *BatalhaScene;
 protected:
     Label* labelTouchLocations[MAX_TOUCHES];
 
-    Sprite *player;
-    Sprite *shadow;
     Sprite *bgInGame;
-    Sprite *brush;
-    
-	Vector<Sprite*> shadows;
-    
-    Vector<Sprite*> brushs;
-    
-    
-    DrawNode *nodeMagic;
-    
-    bool castando = false;
     
     int pontoAtual = 0;
-    
-    RenderTexture *target;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

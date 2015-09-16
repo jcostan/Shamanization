@@ -1,4 +1,6 @@
 #include "HelloWorldScene.h"
+#include "Vila.h"
+#include "Batalha.h"
 
 #define JOGANDO 0
 #define LOJA 1
@@ -66,8 +68,6 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
     
-    configBrush();
-    
     auto label = Label::createWithTTF("Shamanizer: O ataque das sombras", "fonts/arial.ttf", 18);
     
     // position the label on the center of the screen
@@ -82,20 +82,6 @@ bool HelloWorld::init()
     
     bgInGame->setAnchorPoint(Vec2(.5, .5));
     bgInGame->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    
-    // add "HelloWorld" splash screen"
-    player = Sprite::create("shaman_dude.png");
-    shadow = Sprite::create("shadow.png");
-    
-    // position the sprite on the center of the screen
-    player->setPosition(Vec2(visibleSize.width/2.5 + origin.x, visibleSize.height/2 + origin.y));
-    shadow->setPosition(Vec2(visibleSize.width/1.5 + origin.x, visibleSize.height/2 + origin.y));
-    
-    player->setScale(visibleSize.width*.001, visibleSize.height*.0013);
-    shadow->setScale(visibleSize.width*.0008, visibleSize.height*.001);
-    
-    nodeMagic = DrawNode::create();
-    nodeMagic->setName("andrei");
     
     // add the sprite as a child to this layer
     
@@ -135,44 +121,8 @@ void HelloWorld::configBrush()
 
 void HelloWorld::update(float delta){
     
-    spawnTimer -= delta;
-    
     if (JOGANDO)
     {
-        SpawnEnemies();
-        
-        int count = 0;
-        
-        for (int i = 0; i < shadows.size(); i++) {
-            auto position = shadows.at(i)->getPosition();
-            
-            if (position.x < 0 - (shadows.at(i)->getBoundingBox().size.width / 2)) {
-                //Ele saiu da tela, deve ir pra outra(e dominar uma casinha)
-                //A linha abaixo faz ele aparecer na direita da tela
-                position.x = this->getBoundingBox().getMaxX() + shadows.at(i)->getBoundingBox().size.width / 2;
-            }
-            //		else {//Ainda esta na tela, ir pra esquerda
-            //			position.x -= 50 * delta;
-            //			shadows.at(i)->setPosition(position);
-            //		}
-            
-            count++;
-        }
-    }
-}
-
-void HelloWorld::SpawnEnemies(){
-    if (spawnTimer <= 0){
-        Size visibleSize = Director::getInstance()->getVisibleSize();
-        Vec2 origin = Director::getInstance()->getVisibleOrigin();
-        
-        float randY = rand() % 100 + (-100);
-        shadows.pushBack(Sprite::create("shadow.png"));
-        
-        shadows.at(shadows.size()-1)->setPosition(Vec2(visibleSize.width / 1.5 + origin.x, visibleSize.height / 2 + randY));
-        shadows.at(shadows.size()-1)->setScale(visibleSize.width*.0008, visibleSize.height*.001);
-        this->addChild(shadows.at(shadows.size() - 1), shadows.size()+3);
-        spawnTimer = .1;
     }
 }
 
@@ -267,34 +217,18 @@ void HelloWorld::onTouchesEnded(const std::vector<Touch *> &touches, Event *even
 void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)
 {
     switch (keyCode) {
-        case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-            
-            player->setPosition(Vec2(player->getPositionX() + 2, player->getPositionY()));
-            break;
-            
-        case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-            
-            player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
-            break;
-            
-        default:
-            break;
+	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+		ChangeScene(0);
+		break;
+	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+		ChangeScene(1);
+		break;
     }
 }
 
 void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
 {
-    /*switch (keyCode) {
-     case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-     
-     player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
-     shadow->setPosition(Vec2(shadow->getPositionX() - 2, shadow->getPositionY()));
-     
-     break;
-     
-     default:
-     break;
-     }*/
+
 }
 
 #pragma mark -
@@ -302,9 +236,13 @@ void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
 {
-    Director::getInstance()->end();
+	auto scene = Vila::createScene();
+
+	// run
+	Director::getInstance()->replaceScene(scene);
+    //Director::getInstance()->end();
     
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+//    exit(0);
+//#endif
 }

@@ -29,14 +29,14 @@ bool Batalha::init()
 {
 	//////////////////////////////
 	// 1. super init first
-	if (!LayerColor::initWithColor(Color4B(100, 100, 100, 255)))
+	if (!Layer::init())
 	{
 		return false;
 	}
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
+    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+    
 	/////////////////////////////
 	// 2. add a menu item with "X" image, which is clicked to quit the program
 	//    you may modify it.
@@ -66,7 +66,7 @@ bool Batalha::init()
 	// create and initialize a label
 
 	configBrush();
-
+    
 	auto label = Label::createWithTTF("Shamanizer: O ataque das sombras", "fonts/arial.ttf", 18);
 
 	// position the label on the center of the screen
@@ -77,10 +77,10 @@ bool Batalha::init()
 	// add the label as a child to this layer
 	//    this->addChild(label, 1);
 
-	bgInGame = Sprite::create("bg_inGame.jpg");
+	bgInGame = Sprite::create("bgToVila.png");
 
 	bgInGame->setAnchorPoint(Vec2(.5, .5));
-	bgInGame->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	bgInGame->setPosition(Vec2(visibleSize.width / visibleSize.width/2, visibleSize.height / 2));
 
 	// add "HelloWorld" splash screen"
 	player = Sprite::create("shaman_dude.png");
@@ -98,13 +98,15 @@ bool Batalha::init()
 
 	// add the sprite as a child to this layer
 
-	//   this->addChild(bgInGame, 0);
-	//   this->addChild(player, 1);
-	//   this->addChild(shadow, 2);
+	   this->addChild(bgInGame, 0);
+	   this->addChild(player, 1);
+	   this->addChild(shadow, 2);
 	//   this->addChild(closeItem, 3);
-	this->addChild(nodeMagic, 0);
+	//this->addChild(nodeMagic, 0);
 
 	this->scheduleUpdate();
+    
+
 
 	return true;
 }
@@ -170,12 +172,16 @@ void Batalha::SpawnEnemies(){
 	}
 }
 
-void Batalha::ChangeScene(int id){
-	if (id == 0)
-		VilaScene = Vila::createScene();
-	else if (id == 1)
-		HelloWorldScene = HelloWorld::createScene();
-	Director::getInstance()->replaceScene(id == 0 ? HelloWorldScene : VilaScene);
+void Batalha::ChangeScene(int id) {
+
+    if (id == 0) {
+        	this->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / Director::getInstance()->getVisibleSize().width/2, Director::getInstance()->getVisibleSize().height / 6));
+    }
+    
+    else {
+        this->setPosition(Vec2(Director::getInstance()->getVisibleSize().width, Director::getInstance()->getVisibleSize().height / 6));
+    }
+    
 }
 
 #pragma mark -
@@ -184,6 +190,11 @@ void Batalha::ChangeScene(int id){
 void Batalha::onTouchesBegan(const std::vector<Touch *> &touches, Event *event)
 {
 
+    if (touches[0]->getLocationInView().x > Director::getInstance()->getVisibleSize().width/2)
+        ChangeScene(0);
+    
+    else
+        ChangeScene(1);
 }
 
 void Batalha::onTouchesMoved(const std::vector<Touch *> &touches, Event *unused_event)
@@ -241,13 +252,12 @@ void Batalha::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)
 {
 	switch (keyCode) {
 	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-		player->setPosition(Vec2(player->getPositionX() + 2, player->getPositionY()));
+		//player->setPosition(Vec2(player->getPositionX() + 2, player->getPositionY()));
 		Batalha::ChangeScene(0);
 		break;
 
 	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-
-		player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
+		//player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
 		Batalha::ChangeScene(1);
 		break;
 	}

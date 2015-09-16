@@ -49,6 +49,8 @@ bool HelloWorld::init()
                                            "CloseSelected.png",
                                            CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
     
+    closeItem->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
+    
     auto listener = EventListenerTouchAllAtOnce::create();
     auto keyboardListener = EventListenerKeyboard::create();
     
@@ -85,35 +87,10 @@ bool HelloWorld::init()
     
     // add the sprite as a child to this layer
     
-    this->addChild(bgInGame, 0);
-    this->addChild(player, 1);
-    this->addChild(shadow, 2);
-    this->addChild(closeItem, 3);
-    
-    this ->addChild(nodeMagic, 4);
-    
+    this->addChild(closeItem, 0);
     this->scheduleUpdate();
 
     return true;
-}
-
-#pragma mark -
-#pragma mark - George W. Brush
-
-void HelloWorld::configBrush()
-{
-    target = RenderTexture::create(Director::getInstance()->getVisibleSize().width, Director::getInstance()->getVisibleSize().height, Texture2D::PixelFormat::RGBA8888);
-    target->retain();
-    target->setPosition(Director::getInstance()->getVisibleSize() / 2);
-    
-    this->addChild(target);
-    
-    brush = Sprite::create("largeBrush.png");
-    brush->setColor(Color3B::BLACK);
-    brush->retain();
-    
-    target->beginWithClear(1, 1, 1, 1);
-    target->end();
 }
 
 #pragma mark -
@@ -131,87 +108,16 @@ void HelloWorld::update(float delta){
 
 void HelloWorld::onTouchesBegan(const std::vector<Touch *> &touches, Event *event)
 {
-    /*if (timedOut) {
-        detector->reset();
-        
-        if (enableDraw) {
-            detector->removeAllPoints();
-        }
-    }*/
-    
     auto touch = touches[0];
     auto point = touch->getLocation();
-    //detector->addPoint(point);
-    
-    //if (!enableDraw) return
-    
-    //path->moveToPoint(point);
 }
 
 void HelloWorld::onTouchesMoved(const std::vector<Touch *> &touches, Event *unused_event)
 {
-    auto touch = touches[0];
-    auto point = touch->getLocation();
-    
-    //detector->addPoint(point);
-    
-    //if (!enableDraw) return;
-    
-    //path->addLineToPoint(point);
-    
-    
-    //auto start = touch->getLocation();
-    //auto end = touch->getPreviousLocation();
-    
-    /*
-    // begin drawing to the render texture
-    target->begin();
-    
-    // for extra points, we'll draw this smoothly from the last position and vary the sprite's
-    // scale/rotation/offset
-    float distance = start.getDistance(end);
-    if (distance > 1)
-    {
-        int d = (int)distance;
-        brushs.clear();
-        for(int i = 0; i < d; ++i)
-        {
-            Sprite * sprite = Sprite::create("largeBrush.png");
-            sprite->setColor(Color3B::RED);
-            sprite->setOpacity(20);
-            brushs.pushBack(sprite);
-        }
-        for (int i = 0; i < d; i++)
-        {
-            float difx = end.x - start.x;
-            float dify = end.y - start.y;
-            float delta = (float)i / distance;
-            brushs.at(i)->setPosition(Vec2(start.x + (difx * delta), start.y + (dify * delta)));
-            brushs.at(i)->setRotation(rand() % 360);
-            float r = (float)(rand() % 50 / 50.f) + 0.25f;
-            brushs.at(i)->setScale(r);
-            /*_brush->setColor(Color3B(CCRANDOM_0_1() * 127 + 128, 255, 255));
-            // Use CCRANDOM_0_1() will cause error when loading libtests.so on android, I don't know why.
-            brushs.at(i)->setColor(Color3B(rand() % 127 + 128, 255, 255));
-            // Call visit to draw the brush, don't call draw..
-            brushs.at(i)->visit();
-        }
-    }
-    
-    // finish drawing and return context back to the screen
-    target->end();*/
 }
 
 void HelloWorld::onTouchesEnded(const std::vector<Touch *> &touches, Event *event)
 {
-    auto touch = touches[0];
-    auto point = touch->getLocation();
-    
-    //detector->addPoint(point);
-    //detector->detect();
-    
-    //auto start = touch->getLocation();
-    //auto end = touch->getPreviousLocation();
 }
 
 void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)
@@ -231,13 +137,19 @@ void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
 
 }
 
+void HelloWorld::ChangeScene(int id)
+{
+    auto scene = Batalha::createScene();
+    // run
+    Director::getInstance()->replaceScene(scene);
+}
+
 #pragma mark -
 #pragma mark FINISHING DE APLICATION
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
 {
-	auto scene = Vila::createScene();
-
+	auto scene = Batalha::createScene();
 	// run
 	Director::getInstance()->replaceScene(scene);
     //Director::getInstance()->end();

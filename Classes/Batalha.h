@@ -4,7 +4,7 @@
 
 using namespace cocos2d;
 
-class Batalha : public LayerColor
+class Batalha : public Layer
 {
 public:
 	// there's no 'id' in cpp, so we recommend returning the class instance pointer
@@ -44,11 +44,11 @@ protected:
 	Sprite *shadow;
 	Sprite *bgInGame;
 	Sprite *brush;
+    Sprite *fundoRolagem;
 
 	Vector<Sprite*> shadows;
 
 	Vector<Sprite*> brushs;
-
 
 	DrawNode *nodeMagic;
 

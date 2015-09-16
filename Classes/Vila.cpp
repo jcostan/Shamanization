@@ -120,19 +120,11 @@ void Vila::onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event)
 	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 
 		player->setPosition(Vec2(player->getPositionX() + 2, player->getPositionY()));
-		auto scene = HelloWorld::createScene();
-
-		// run
-		Director::getInstance()->replaceScene(scene);
 		break;
 
 	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
 
 		player->setPosition(Vec2(player->getPositionX() - 2, player->getPositionY()));
-		auto scene = Batalha::createScene();
-
-		// run
-		Director::getInstance()->replaceScene(scene);
 		break;
 	}
 }

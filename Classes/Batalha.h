@@ -36,6 +36,10 @@ private:
 	void ChangeScene(int id);
 	Scene *VilaScene;
 	Scene *BatalhaScene;
+	void MoveCameraTo(float dt);
+	Vec2 movePosition;
+	bool isChangingScene = false;
+	int cenaAtual = 0;//0 - Batalha, 1 - Vila
 
 protected:
 	Label* labelTouchLocations[MAX_TOUCHES];

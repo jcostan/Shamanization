@@ -133,8 +133,8 @@ void Batalha::update(float delta){
 
 	spawnTimer -= delta;
 
-	if (JOGANDO)
-	{
+	//if (JOGANDO)
+	//{
 		SpawnEnemies();
 
 		int count = 0;
@@ -145,16 +145,19 @@ void Batalha::update(float delta){
 			if (position.x < 0 - (shadows.at(i)->getBoundingBox().size.width / 2)) {
 				//Ele saiu da tela, deve ir pra outra(e dominar uma casinha)
 				//A linha abaixo faz ele aparecer na direita da tela
-				position.x = this->getBoundingBox().getMaxX() + shadows.at(i)->getBoundingBox().size.width / 2;
+				//position.x = this->getBoundingBox().getMaxX() + shadows.at(i)->getBoundingBox().size.width / 2;
 			}
-			//		else {//Ainda esta na tela, ir pra esquerda
-			//			position.x -= 50 * delta;
-			//			shadows.at(i)->setPosition(position);
-			//		}
+			else {//Ainda esta na tela, ir pra esquerda
+				position.x -= 50 * delta;
+				shadows.at(i)->setPosition(position);
+			}
 
 			count++;
 		}
-	}
+		if (isChangingScene){
+			MoveCameraTo(delta);
+		}
+	//}
 }
 
 void Batalha::SpawnEnemies(){
@@ -168,18 +171,39 @@ void Batalha::SpawnEnemies(){
 		shadows.at(shadows.size() - 1)->setPosition(Vec2(visibleSize.width / 1.5 + origin.x, visibleSize.height / 2 + randY));
 		shadows.at(shadows.size() - 1)->setScale(visibleSize.width*.0008, visibleSize.height*.001);
 		this->addChild(shadows.at(shadows.size() - 1), shadows.size() + 3);
-		spawnTimer = .1;
+		spawnTimer = 1;
+	}
+}
+
+void Batalha::MoveCameraTo(float dt){
+	if (isChangingScene && cenaAtual == 1 && movePosition.x > this->getPosition().x){
+		this->setPosition(Vec2(this->getPosition().x + dt*400, this->getPosition().y));
+	}
+	else if (cenaAtual == 1 && isChangingScene){
+		isChangingScene = false;
+		cenaAtual = 0;
+	}
+	if (isChangingScene && cenaAtual == 0 && movePosition.x < this->getPosition().x){
+		this->setPosition(Vec2(this->getPosition().x - dt*400, this->getPosition().y));
+	}
+	else if (cenaAtual == 0 && isChangingScene){
+		isChangingScene = false;
+		cenaAtual = 1;
 	}
 }
 
 void Batalha::ChangeScene(int id) {
 
     if (id == 0) {
-        	this->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / Director::getInstance()->getVisibleSize().width/2, Director::getInstance()->getVisibleSize().height / 6));
+        //this->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / Director::getInstance()->getVisibleSize().width/2, this->getPosition().y));
+		movePosition = Vec2(Director::getInstance()->getVisibleSize().width / Director::getInstance()->getVisibleSize().width / 2, this->getPosition().y);
+		isChangingScene = true;
     }
     
     else {
-        this->setPosition(Vec2(Director::getInstance()->getVisibleSize().width, Director::getInstance()->getVisibleSize().height / 6));
+        //this->setPosition(Vec2(Director::getInstance()->getVisibleSize().width, this->getPosition().y));
+		movePosition = Vec2(Director::getInstance()->getVisibleSize().width, this->getPosition().y);
+		isChangingScene = true;
     }
     
 }
@@ -189,10 +213,8 @@ void Batalha::ChangeScene(int id) {
 
 void Batalha::onTouchesBegan(const std::vector<Touch *> &touches, Event *event)
 {
-
     if (touches[0]->getLocationInView().x > Director::getInstance()->getVisibleSize().width/2)
         ChangeScene(0);
-    
     else
         ChangeScene(1);
 }
